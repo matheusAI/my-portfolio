@@ -1,5 +1,5 @@
-import About from "@/components/about";
-import Projetos from "@/components/projetos";
+import About from "@/components/about/about";
+import Projetos from "@/components/projetos/projetos";
 
 export default function Home() {
   return (
