@@ -1,10 +1,18 @@
 "use client";
 
-import React, { useState } from 'react';
-import Link from 'next/link';
+import React, { useState } from "react";
+import Link from "next/link";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const FalseIsOpen = () => {
+    useState(false)
+  }
 
   return (
     <nav className="fixed w-full h-20 bg-[#121215] z-50">
@@ -15,13 +23,12 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Menu hamburguer para telas pequenas */}
-        <div className="lg:hidden">
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="text-white text-3xl mr-8"
-          >
-            &#9776;
-          </button>
+        <div className="checkbtn lg:hidden transition-all duration-500" onClick={toggleMenu}>
+          {isOpen ? (
+            <span className="text-4xl">&#x2716;</span> // Ícone X
+          ) : (
+            <span className="text-4xl">&#9776;</span> // Ícone de Hambúrguer
+          )}
         </div>
 
         {/* Links */}
@@ -29,18 +36,39 @@ const Navbar: React.FC = () => {
           className={`${
             isOpen ? "left-0" : "left-full"
           } items-center lg:left-auto lg:static fixed top-20 lg:top-auto flex flex-col lg:flex-row lg:space-x-4 bg-[#121215] lg:bg-transparent w-full lg:w-auto h-auto lg:h-full lg:mr-8 transition-all duration-500 ease-in-out`}
+          onClick={FalseIsOpen}
         >
           <li className="block lg:inline-block my-6 lg:my-0">
-            <Link href="#sobre" className="text-[#ff0000] uppercase px-4 py-2 hover:bg-[#ff0000] hover:text-white rounded-2xl">sobre</Link>
+            <Link
+              href="#sobre"
+              className="text-[#ff0000] uppercase px-4 py-2 hover:bg-[#ff0000] hover:text-white rounded-2xl"
+            >
+              sobre
+            </Link>
           </li>
           <li className="block lg:inline-block my-6 lg:my-0">
-            <Link href="#projetos" className="text-[#ff0000] uppercase px-4 py-2 hover:bg-[#ff0000] hover:text-white rounded-2xl">Projetos</Link>
+            <Link
+              href="#projetos"
+              className="text-[#ff0000] uppercase px-4 py-2 hover:bg-[#ff0000] hover:text-white rounded-2xl"
+            >
+              Projetos
+            </Link>
           </li>
           <li className="block lg:inline-block my-6 lg:my-0">
-            <Link href="#skills" className="text-[#ff0000] uppercase px-4 py-2 hover:bg-[#ff0000] hover:text-white rounded-2xl">skills</Link>
+            <Link
+              href="#skills"
+              className="text-[#ff0000] uppercase px-4 py-2 hover:bg-[#ff0000] hover:text-white rounded-2xl"
+            >
+              skills
+            </Link>
           </li>
           <li className="block lg:inline-block my-6 lg:my-0">
-            <Link href="#contato" className="text-[#ff0000] uppercase px-4 py-2 hover:bg-[#ff0000] hover:text-white rounded-2xl">Contato</Link>
+            <Link
+              href="#contato"
+              className="text-[#ff0000] uppercase px-4 py-2 hover:bg-[#ff0000] hover:text-white rounded-2xl"
+            >
+              Contato
+            </Link>
           </li>
         </ul>
       </div>
