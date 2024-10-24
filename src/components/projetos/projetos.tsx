@@ -1,7 +1,12 @@
-"use client";
+{/* import Image from "next/image"; */}
 
-{/*import Image from 'next/image';*/}
-import { Suspense, useEffect, useState } from 'react';
+interface Repo {
+  id: number;
+  name: string;
+  description: string | null;
+  html_url: string;
+  homepage: string;
+}
 
 interface Projeto {
   id: number;
@@ -12,25 +17,44 @@ interface Projeto {
   imag: string;
 }
 
-function Projetos() {
-  const [projetos, setProjetos] = useState<Projeto[]>([]);
+const favoritos = ["Relogio_digital", "DEVLINKS", "jogo-da-cobra", "server-ts"];
 
-  useEffect(() => {
-    async function fetchProjetos() {
-      try {
-        const response = await fetch('/api/projetos');
-        if (!response.ok) {
-          throw new Error('Erro ao buscar os projetos');
-        }
-        const data: Projeto[] = await response.json();
-        setProjetos(data);
-      } catch (error) {
-        console.error('Erro ao buscar os projetos:', error);
-      }
+async function fetchProjetos(): Promise<Projeto[]> {
+  try {
+    const response = await fetch('https://api.github.com/users/matheusAI/repos', {
+      headers: {
+        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+      },
+      next: { revalidate: 300 },
+    });
+    
+    if (!response.ok) {
+      throw new Error('Erro ao buscar os repositórios do GitHub');
     }
 
-    fetchProjetos();
-  }, []);
+    const repos: Repo[] = await response.json();
+
+    const projetosFavoritos: Projeto[] = repos
+      .filter((repo) => favoritos.includes(repo.name))
+      .map((repo) => ({
+        id: repo.id,
+        titulo: repo.name,
+        conteudo: repo.description || "Sem descrição",
+        url: repo.html_url,
+        UrlProducao: repo.homepage || '#',
+        imag: "/default-image.png",
+      }));
+
+    return projetosFavoritos;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+}
+
+// Server Component para exibir os projetos
+export default async function Projetos() {
+  const projetos = await fetchProjetos(); // Faz a requisição diretamente
 
   return (
     <div className="flex flex-wrap gap-10 justify-center m-10">
@@ -61,25 +85,19 @@ function Projetos() {
             >
               Repositorio
             </a>
-            <a
-              href={projeto.UrlProducao}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="select-none rounded-lg bg-blue-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-            >
-              demo
-            </a>
+            {projeto.UrlProducao && projeto.UrlProducao !== '#' && (
+              <a
+                href={projeto.UrlProducao}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="select-none rounded-lg bg-blue-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+              >
+                Demo
+              </a>
+            )}
           </div>
         </div>
       ))}
     </div>
-  );
-}
-
-export default function ProjetosWithSuspense() {
-  return (
-    <Suspense fallback={<div>Carregando...</div>}>
-      <Projetos />
-    </Suspense>
   );
 }
