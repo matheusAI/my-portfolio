@@ -6,13 +6,15 @@ import Link from "next/link";
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  // Função para alternar o estado de aberto/fechado do menu
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  const FalseIsOpen = () => {
-    useState(false)
-  }
+  // Quando o menu é clicado, fecha o menu
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
 
   return (
     <nav className="fixed w-full h-20 bg-[#121215] z-50">
@@ -36,20 +38,20 @@ const Navbar: React.FC = () => {
           className={`${
             isOpen ? "left-0" : "left-full"
           } items-center lg:left-auto lg:static fixed top-20 lg:top-auto flex flex-col lg:flex-row lg:space-x-4 bg-[#121215] lg:bg-transparent w-full lg:w-auto h-auto lg:h-full lg:mr-8 transition-all duration-500 ease-in-out`}
-          onClick={FalseIsOpen}
+          onClick={closeMenu}
         >
           <li className="block lg:inline-block my-6 lg:my-0">
             <Link
               href="#sobre"
-              className="text-[#ff0000] uppercase px-4 py-2 hover:bg-[#ff0000] hover:text-white rounded-2xl"
+              className="text-[#ff0000] uppercase px-4 py-2 hover:bg-[#ff0000] hover:text-[#121215] rounded-2xl"
             >
-              sobre
+              Sobre
             </Link>
           </li>
           <li className="block lg:inline-block my-6 lg:my-0">
             <Link
               href="#projetos"
-              className="text-[#ff0000] uppercase px-4 py-2 hover:bg-[#ff0000] hover:text-white rounded-2xl"
+              className="text-[#ff0000] uppercase px-4 py-2 hover:bg-[#ff0000] hover:text-[#121215] rounded-2xl"
             >
               Projetos
             </Link>
@@ -57,15 +59,15 @@ const Navbar: React.FC = () => {
           <li className="block lg:inline-block my-6 lg:my-0">
             <Link
               href="#skills"
-              className="text-[#ff0000] uppercase px-4 py-2 hover:bg-[#ff0000] hover:text-white rounded-2xl"
+              className="text-[#ff0000] uppercase px-4 py-2 hover:bg-[#ff0000] hover:text-[#121215] rounded-2xl"
             >
-              skills
+              Skills
             </Link>
           </li>
           <li className="block lg:inline-block my-6 lg:my-0">
             <Link
               href="#contato"
-              className="text-[#ff0000] uppercase px-4 py-2 hover:bg-[#ff0000] hover:text-white rounded-2xl"
+              className="text-[#ff0000] uppercase px-4 py-2 hover:bg-[#ff0000] hover:text-[#121215] rounded-2xl"
             >
               Contato
             </Link>
