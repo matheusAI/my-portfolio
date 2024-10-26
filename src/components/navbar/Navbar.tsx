@@ -40,10 +40,10 @@ const Navbar: React.FC = () => {
           } items-center lg:left-auto lg:static fixed top-20 lg:top-auto flex flex-col lg:flex-row lg:space-x-4 bg-[#121215] lg:bg-transparent w-full lg:w-auto h-auto lg:h-full lg:mr-8 transition-all duration-500 ease-in-out`}
           onClick={closeMenu}
         >
-          <li className="block lg:inline-block my-6 lg:my-0">
+          <li className="block lg:inline-block my-6 lg:my-0 ">
             <Link
               href="#sobre"
-              className="text-[#ff0000] uppercase px-4 py-2 hover:bg-[#ff0000] hover:text-[#121215] rounded-2xl"
+              className="text-[#ff0000] uppercase px-4 py-2 shadow-lg hover:shadow-gray-500/40 rounded-2xl"
             >
               Sobre
             </Link>
@@ -51,7 +51,7 @@ const Navbar: React.FC = () => {
           <li className="block lg:inline-block my-6 lg:my-0">
             <Link
               href="#projetos"
-              className="text-[#ff0000] uppercase px-4 py-2 hover:bg-[#ff0000] hover:text-[#121215] rounded-2xl"
+              className="text-[#ff0000] uppercase px-4 py-2 shadow-lg hover:shadow-gray-500/40 rounded-2xl"
             >
               Projetos
             </Link>
@@ -59,7 +59,7 @@ const Navbar: React.FC = () => {
           <li className="block lg:inline-block my-6 lg:my-0">
             <Link
               href="#skills"
-              className="text-[#ff0000] uppercase px-4 py-2 hover:bg-[#ff0000] hover:text-[#121215] rounded-2xl"
+              className="text-[#ff0000] uppercase px-4 py-2 shadow-lg hover:shadow-gray-500/40 rounded-2xl"
             >
               Skills
             </Link>
@@ -67,7 +67,7 @@ const Navbar: React.FC = () => {
           <li className="block lg:inline-block my-6 lg:my-0">
             <Link
               href="#contato"
-              className="text-[#ff0000] uppercase px-4 py-2 hover:bg-[#ff0000] hover:text-[#121215] rounded-2xl"
+              className="text-[#ff0000] uppercase px-4 py-2 shadow-lg hover:shadow-gray-500/40 rounded-2xl"
             >
               Contato
             </Link>

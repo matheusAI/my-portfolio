@@ -6,7 +6,7 @@ import { FaEnvelope, FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
 
 const About: React.FC = () => {
   return (
-    <section id="#sobre" className=" text-gray-300 py-16 px-8">
+    <section id="#sobre" className=" py-16 px-8">
       <div className="container grid md:grid-cols-2 grid-cols-1 gap-4 mx-auto justify-center items-center">
         <div className=" flex flex-col items-center justify-center py-3 gap-2">
           <Image
@@ -14,9 +14,9 @@ const About: React.FC = () => {
             alt=""
             width={320}
             height={320}
-            className=" rounded-full p-2 bg-gradient-to-b from-red-600 to-red-950"
+            className=" rounded-full p-2 bg-gradient-to-b from-red-600 to-red-950 shadow-md shadow-red-500/20 transition-all hover:shadow-lg hover:shadow-red-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
           />
-          <div className=" w-96 h-16 bg-[#121215] rounded-full flex items-center justify-around">
+          <div className=" w-96 h-16 bg-[#121215] rounded-full flex items-center justify-around shadow-md shadow-red-500/20 transition-all hover:shadow-lg hover:shadow-red-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
             {/* Gmail */}
             <a href="mailto:ms2279584@gmail.com" aria-label="Gmail">
               <FaEnvelope size={40} />
@@ -53,8 +53,8 @@ const About: React.FC = () => {
             </a>
           </div>
         </div>
-        <div className="container">
-          <h2 className="text-4xl font-bold text-white mb-6">sobre mim</h2>
+        <div className="container p-2">
+          <h2 className="text-4xl font-bold text-[#ff0000] mb-6">sobre mim</h2>
           <p className="text-lg leading-relaxed mb-4">
             sou Desenvolvedor de software especializado em criar soluções web
             dinâmicas e escaláveis com tecnologias como Nest.js, Next.js com
