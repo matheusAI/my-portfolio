@@ -11,6 +11,7 @@ export default function Home() {
       <section id="projetos">
         <Projetos />
       </section>
+      <div className="p-1 w-[90%] bg-[#121215]"></div>
     </main>
   );
 }
