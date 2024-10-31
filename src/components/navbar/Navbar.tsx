@@ -43,7 +43,7 @@ const Navbar: React.FC = () => {
           <li className="block lg:inline-block my-6 lg:my-0 ">
             <Link
               href="#sobre"
-              className="text-[#ff0000] uppercase px-4 py-2 shadow-lg hover:shadow-gray-500/40 rounded-2xl"
+              className="text-[#ff0000] bg-background uppercase px-4 py-2 shadow-lg hover:shadow-red-500/40 rounded-lg"
             >
               Sobre
             </Link>
@@ -51,7 +51,7 @@ const Navbar: React.FC = () => {
           <li className="block lg:inline-block my-6 lg:my-0">
             <Link
               href="#projetos"
-              className="text-[#ff0000] uppercase px-4 py-2 shadow-lg hover:shadow-gray-500/40 rounded-2xl"
+              className="text-[#ff0000] bg-background uppercase px-4 py-2 shadow-lg hover:shadow-red-500/40 rounded-lg"
             >
               Projetos
             </Link>
@@ -59,7 +59,7 @@ const Navbar: React.FC = () => {
           <li className="block lg:inline-block my-6 lg:my-0">
             <Link
               href="#skills"
-              className="text-[#ff0000] uppercase px-4 py-2 shadow-lg hover:shadow-gray-500/40 rounded-2xl"
+              className="text-[#ff0000] bg-background uppercase px-4 py-2 shadow-lg hover:shadow-red-500/40 rounded-lg"
             >
               Skills
             </Link>
@@ -67,7 +67,7 @@ const Navbar: React.FC = () => {
           <li className="block lg:inline-block my-6 lg:my-0">
             <Link
               href="#contato"
-              className="text-[#ff0000] uppercase px-4 py-2 shadow-lg hover:shadow-gray-500/40 rounded-2xl"
+              className="text-[#ff0000] bg-background uppercase px-4 py-2 shadow-lg hover:shadow-red-500/40 rounded-lg"
             >
               Contato
             </Link>
