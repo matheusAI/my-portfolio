@@ -39,7 +39,7 @@ const skills = [
 const Skills: React.FC = () => {
   return (
     <section id="skills" className="text-gray-300 py-16 px-8">
-      <h2 className="text-4xl font-bold text-center mb-8">Habilidades</h2>
+      <h2 className="text-4xl text-[#ff0000] font-bold text-center mb-20">Habilidades</h2>
       <div className="container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 mx-auto text-center">
         {skills.map((skill, index) => (
           <div key={index} className="flex flex-col items-center">
