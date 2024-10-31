@@ -64,14 +64,6 @@ const Navbar: React.FC = () => {
               Skills
             </Link>
           </li>
-          <li className="block lg:inline-block my-6 lg:my-0">
-            <Link
-              href="#contato"
-              className="text-[#ff0000] bg-background uppercase px-4 py-2 shadow-lg hover:shadow-red-500/40 rounded-lg"
-            >
-              Contato
-            </Link>
-          </li>
         </ul>
       </div>
     </nav>
