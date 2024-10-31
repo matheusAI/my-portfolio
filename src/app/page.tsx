@@ -1,5 +1,6 @@
 import About from "@/components/about/about";
 import Projetos from "@/components/projetos/projetos";
+import Skills from "@/components/skill/skill";
 
 export default function Home() {
   return (
@@ -12,6 +13,9 @@ export default function Home() {
         <Projetos />
       </section>
       <div className="p-1 w-[90%] bg-[#121215]"></div>
+      <section id="skills">
+        <Skills />
+      </section>
     </main>
   );
 }
