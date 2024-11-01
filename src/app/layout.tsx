@@ -1,6 +1,7 @@
 import '@/styles/globals.css';
 import Navbar from '@/components/navbar/Navbar';
 import Footer from '@/components/footer/footer';
+import { Analytics } from "@vercel/analytics/react"
 
 export const metadata = {
   title: 'My Portfolio',
@@ -18,6 +19,7 @@ export default function RootLayout({
         <Navbar />
         <main className='pt-20'>{children}</main>
         <Footer />
+        <Analytics/>
       </body>
     </html>
   );
