@@ -19,7 +19,7 @@ interface Projeto {
   imag: string;
 }
 
-const favoritos = ["Relogio_digital", "DEVLINKS", "jogo-da-cobra", "server-ts"];
+const favoritos = ["Relogio_digital", "Gerador-de-senha", "jogo-da-cobra", "server-ts"];
 
 async function fetchProjetos(): Promise<Projeto[]> {
   try {
