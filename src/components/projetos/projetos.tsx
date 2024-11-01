@@ -27,7 +27,7 @@ async function fetchProjetos(): Promise<Projeto[]> {
       "https://api.github.com/users/matheusAI/repos",
       {
         headers: {
-          Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+          Authorization: `${process.env.GITHUB_TOKEN}`,
         },
         next: { revalidate: 300 },
       }
