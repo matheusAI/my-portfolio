@@ -1,104 +1,74 @@
-{
-  /* import Image from "next/image"; */
-}
+"use client";
 
-interface Repo {
-  id: number;
-  name: string;
-  description: string | null;
-  html_url: string;
-  homepage: string;
-}
+import {
+  useGitHubAutomatedRepos,
+  StackIcons,
+  ProjectIcons,
+} from "github-automated-repos";
 
-interface Projeto {
-  id: number;
-  titulo: string;
-  conteudo: string;
-  url: string;
-  UrlProducao: string;
-  imag: string;
-}
-
-const favoritos = ["Relogio_digital", "Gerador-de-senha", "jogo-da-cobra", "server-ts"];
-
-async function fetchProjetos(): Promise<Projeto[]> {
-  try {
-    const response = await fetch(
-      "https://api.github.com/users/matheusAI/repos",
-      {
-        headers: {
-          Authorization: `${process.env.GITHUB_TOKEN}`,
-        },
-        next: { revalidate: 300 },
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error("Erro ao buscar os repositórios do GitHub");
-    }
-
-    const repos: Repo[] = await response.json();
-
-    const projetosFavoritos: Projeto[] = repos
-      .filter((repo) => favoritos.includes(repo.name))
-      .map((repo) => ({
-        id: repo.id,
-        titulo: repo.name,
-        conteudo: repo.description || "Sem descrição",
-        url: repo.html_url,
-        UrlProducao: repo.homepage || "#",
-        imag: "/default-image.png",
-      }));
-
-    return projetosFavoritos;
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
-}
-
-export default async function Projetos() {
-  const projetos = await fetchProjetos();
+export default function Projetos() {
+  const data = useGitHubAutomatedRepos("matheusAI", "exibir"); // Adicione uma palavra-chave se necessário
 
   return (
     <div>
-      <h2 className="text-4xl text-[#ff0000] font-bold text-center mb-20">projetos</h2>
+      <h2 className="text-4xl text-[#ff0000] font-bold text-center mb-20">
+        Projetos
+      </h2>
       <div className="flex flex-wrap gap-10 justify-center m-10">
-        {projetos.map((projeto) => (
+        {data.map((item) => (
           <div
-            key={projeto.id}
+            key={item.id}
             className="relative flex w-80 flex-col rounded-xl bg-[#121215] bg-clip-border text-white shadow-lg hover:shadow-gray-500/40"
           >
-            <div className="relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg hover:shadow-gray-500/40 bg-gradient-to-r from-red-500 to-red-600">
-              {/* <Image src={projeto.imag} alt=''/> */}
+            <div className="flex justify-center relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg hover:shadow-gray-500/40 bg-gradient-to-r from-red-500 to-red-600">
+              {item.topics.map((icon) => {
+                return (
+                  <ProjectIcons
+                    key={icon}
+                    className="project_Icon h-40"
+                    itemTopics={icon}
+                  />
+                );
+              })}
             </div>
             <div className="p-6">
               <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
-                {projeto.titulo}
+                {item.name}
               </h5>
               <p className="block font-sans text-base font-light leading-relaxed text-inherit antialiased">
-                {projeto.conteudo}
+                {item.description}
               </p>
             </div>
             <div className="p-6 pt-0 flex gap-10">
               <a
-                href={projeto.url}
+                href={item.html_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="select-none rounded-lg bg-background py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-red-500/20 transition-all hover:shadow-lg hover:shadow-red-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                className="select-none rounded-lg bg-background py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-red-500/20 transition-all hover:shadow-lg hover:shadow-red-500/40"
               >
                 Repositorio
               </a>
-              {projeto.UrlProducao && projeto.UrlProducao !== "#" && (
+              {item.homepage && (
                 <a
-                  href={projeto.UrlProducao}
+                  href={item.homepage}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="select-none rounded-lg bg-background py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-red-500/20 transition-all hover:shadow-lg hover:shadow-red-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                  className="select-none rounded-lg bg-background py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-red-500/20 transition-all hover:shadow-lg hover:shadow-red-500/40"
                 >
                   Demo
                 </a>
               )}
+            </div>
+            {/* Ícones de Stack */}
+            <div className=" flex gap-1 ml-4 mb-2">
+              {item.topics.map((icon) => (
+                <div
+                  key={icon}
+                  style={{ display: "flex", alignItems: "center" }}
+                >
+                  <StackIcons className="stack_Icon" itemTopics={icon} />
+                </div>
+              ))}
             </div>
           </div>
         ))}
